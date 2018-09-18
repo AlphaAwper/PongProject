@@ -47,7 +47,7 @@ public class SelfMovingPaddle extends Actor
         {
             //Change our 'x' direction to the inverted direction , ant respawns the paddle at random height in the map
             dx = dx * -1;
-            setLocation(getX() + dx, (Greenfoot.getRandomNumber(800)-200));
+            setLocation(getX() + dx, (Greenfoot.getRandomNumber(200)+120));
             image.rotate(180);
         }
     }

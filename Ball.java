@@ -18,7 +18,6 @@ public class Ball extends Actor
     private boolean hasBouncedVertically;
     private int delay;
     private int bounceCount = 0 ;
-    private int delayFalseChange = 0 ;
     private boolean isFalsePaddle = false;
     GreenfootSound themeSong = new GreenfootSound("themeSong.mp3");
     GreenfootSound sound = null;
@@ -56,12 +55,16 @@ public class Ball extends Actor
         {
             move(speed);
             checkBounceOffWalls();
-            checkBounceOffCeiling();
             checkRestart();
             if(isTouching(Paddle.class) || isTouching(SelfMovingPaddle.class))
             {
                 if (isTouching(SelfMovingPaddle.class)) isFalsePaddle = true;
                 checkBounceOffPaddle();
+            }
+            else
+            {
+                isFalsePaddle = false;
+               checkBounceOffCeiling(); 
             }
         }
     }    
@@ -150,7 +153,8 @@ public class Ball extends Actor
             if (! hasBouncedVertically)
             {
                 revertVertically();
-                if(!isFalsePaddle) checkSpeed();
+                //if(!isFalsePaddle) checkSpeed();
+                checkSpeed();
                 isFalsePaddle = false;
             }
         }
